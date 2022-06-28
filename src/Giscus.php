@@ -3,11 +3,17 @@
 namespace Giscus;
 
 class Giscus {
-	public function hooks() {
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-	}
+	/**
+	 * Initialize the hooks that will run the Giscus functionality.
+	 *
+	 * @since 0.1.0
+	 */
+	public function hooks() : void {
+		if ( is_admin() ) {
+			return;
+		}
 
-	public function enqueue_scripts() {
-
+		( new Script() )->hooks();
+		( new Comments() )->hooks();
 	}
 }
