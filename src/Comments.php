@@ -25,6 +25,18 @@ class Comments {
 	 * @return string                     The path to the theme template file.
 	 */
 	public function template( string $theme_template ) : string {
-		return dirname( __DIR__ ) . '/public/views/template.php';
+		$giscus_template = dirname( __DIR__ ) . '/public/views/template.php';
+
+		/**
+		 * Filters the path giscus template.
+		 *
+		 * Useful if you want to render more content inside the giscus template.
+		 * Just be sure to include the `.giscus` element, so giscus can render properly.
+		 *
+		 * @since 0.1.0
+		 *
+		 * @param string   $giscus_template   The path to the giscus template.
+		 */
+		return apply_filters( 'giscus_template', $giscus_template );
 	}
 }
