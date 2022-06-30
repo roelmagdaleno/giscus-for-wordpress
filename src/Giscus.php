@@ -10,6 +10,7 @@ class Giscus {
 	 */
 	public function hooks() : void {
 		if ( is_admin() ) {
+			( new OptionsPage() )->hooks();
 			return;
 		}
 
