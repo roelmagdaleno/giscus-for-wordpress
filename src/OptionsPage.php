@@ -103,17 +103,17 @@ class OptionsPage {
 				array( $this, 'render_field' ),
 				$this->page,
 				$this->page,
-				array( 'class' => $setting )
+				array( 'instance' => $setting )
 			);
 		}
 	}
 
 	public function render_field( array $args = array() ) {
-		if ( empty( $args ) || ! isset( $args['class'] ) ) {
+		if ( empty( $args ) || ! isset( $args['instance'] ) ) {
 			return;
 		}
 
-		echo $args['class']->render();
+		echo $args['instance']->render();
 	}
 
 	public function render() : void {
