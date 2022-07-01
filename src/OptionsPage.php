@@ -2,20 +2,40 @@
 
 namespace Giscus;
 
-use Giscus\Components\Checkbox;
-use Giscus\Components\Radio;
-use Giscus\Components\Select;
-use Giscus\Components\Text;
-use Giscus\Components\Hidden;
+use Giscus\Components\{
+	Checkbox,
+	Hidden,
+	Radio,
+	Select,
+	Text,
+};
 
 class OptionsPage {
+	/**
+	 * The page slug.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @var   string   $page   The page slug.
+	 */
 	protected string $page = 'giscus';
 
+	/**
+	 * Initialize the hooks that will run the Giscus functionality.
+	 *
+	 * @since 0.1.0
+	 */
 	public function hooks() : void {
 		add_action( 'admin_menu', array( $this, 'register_menu' ) );
 		add_action( 'admin_init', array( $this, 'register_settings' ) );
 	}
 
+	/**
+	 * Register the submenu page.
+	 * The submenu page will include the plugin's options page.
+	 *
+	 * @since 0.1.0
+	 */
 	public function register_menu() : void {
 		add_submenu_page(
 			'options-general.php',
@@ -27,6 +47,12 @@ class OptionsPage {
 		);
 	}
 
+	/**
+	 * Register the settings to render in the options page.
+	 * Each setting must be a component instance.
+	 *
+	 * @since 0.1.0
+	 */
 	public function register_settings() : void {
 		register_setting( 'giscus_group', 'giscus_settings' );
 
@@ -162,6 +188,14 @@ class OptionsPage {
 		}
 	}
 
+	/**
+	 * Render the setting field.
+	 * The setting field must be a component instance.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param array   $args   The settings field arguments.
+	 */
 	public function render_field( array $args = array() ) {
 		if ( empty( $args ) || ! isset( $args['instance'] ) ) {
 			return;
@@ -170,11 +204,24 @@ class OptionsPage {
 		echo $args['instance']->render();
 	}
 
+	/**
+	 * Render the plugin's options page.
+	 * It contains all plugin's settings.
+	 *
+	 * @since 0.1.0
+	 */
 	public function render() : void {
 		include_once dirname( __DIR__ ) . '/admin/views/options-page.php';
 	}
 
-	public function categories() {
+	/**
+	 * Get the GitHub Discussions categories.
+	 *
+	 * @since  0.1.0
+	 *
+	 * @return array   The GitHub Discussions categories.
+	 */
+	public function categories() : array {
 		$settings = get_option( 'giscus_settings', array() );
 
 		$categories = array();

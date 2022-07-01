@@ -20,6 +20,14 @@ class Giscus {
 		( new Comments() )->hooks();
 	}
 
+	/**
+	 * Enqueue admin assets.
+	 * Only load it in Giscus admin page.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param string   $hook_suffix   The hook suffix.
+	 */
 	public function enqueue_admin_assets( string $hook_suffix ) {
 		if ( 'settings_page_giscus' !== $hook_suffix ) {
 			return;
