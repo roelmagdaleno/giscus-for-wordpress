@@ -71,7 +71,7 @@ class Script {
 			'data-repo'              => $settings['repository'],
 			'data-repo-id'           => $settings['repositoryId'],
 			'data-category'          => $settings['categoryName'] ?? '',
-			'data-category-id'       => $settings['categoryId'] ?? '',
+			'data-category-id'       => $settings['category'] ?? '',
 			'data-mapping'           => $settings['mapping'] ?? 'pathname',
 			'data-reactions-enabled' => $settings['reactionsEnabled'] ?? '0',
 			'data-emit-metadata'     => $settings['emitMetadata'] ?? '0',
@@ -87,7 +87,7 @@ class Script {
 		$tag = '<script src="' . esc_attr( $src ) . '" ';
 
 		foreach ( $attributes as $attribute => $value ) {
-			$tag .= esc_attr( $attribute ) . '=' . esc_attr( $value ) . ' ';
+			$tag .= esc_attr( $attribute ) . '="' . esc_attr( $value ) . '" ';
 		}
 
 		$tag .= 'crossorigin="anonymous" async></script>';
