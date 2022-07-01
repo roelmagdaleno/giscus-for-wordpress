@@ -60,7 +60,7 @@ class OptionsPage {
 				),
 			) ),
 			new Text( 'repository', array(
-				'label'       => 'Repository',
+				'label'       => 'GitHub Repository',
 				'placeholder' => 'myusername/repo',
 			) ),
 			new Radio( 'mapping', array(
@@ -95,7 +95,7 @@ class OptionsPage {
 			) ),
 			new Select( 'category', array(
 				'label'       => 'Discussion Category',
-				'description' => 'Populated after type the GitHub repository.',
+				'description' => 'Choose the discussion category where new discussions will be created. It is recommended to use a category with the <strong>Announcements</strong> type so that new discussions can only be created by maintainers and giscus. <strong>Populated after type the GitHub repository</strong>.',
 				'options'     => array(),
 			) ),
 			new Checkbox( 'useCategory', array(
