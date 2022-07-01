@@ -18,7 +18,7 @@ class Radio extends Component {
 		foreach ( $this->settings['options'] as $value => $option ) {
 			$html .= '<div class="radio-wrapper">';
 			$html .= '<input type="radio" id="' . esc_attr( $value ) . '" ';
-			$html .= 'name="' . esc_attr( $this->name() ) . '" value="' . esc_attr( $this->value() ) . '" ';
+			$html .= 'name="' . esc_attr( $this->name() ) . '" value="' . esc_attr( $value ) . '" ';
 			$html .= checked( $value, $this->value(), false ) . '/> <label for="' . esc_attr( $value ) . '">';
 			$html .= '<strong>' . $option['label'] . '</strong>';
 			$html .= '<p class="description">' . $option['description'] . '</p>';
