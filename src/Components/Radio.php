@@ -21,7 +21,7 @@ class Radio extends Component {
 			$html .= 'name="' . esc_attr( $this->name() ) . '" value="' . esc_attr( $this->value() ) . '" ';
 			$html .= checked( $value, $this->value(), false ) . '/> <label for="' . esc_attr( $value ) . '">';
 			$html .= '<strong>' . $option['label'] . '</strong>';
-			$html .= '<p>' . $option['description'] . '</p>';
+			$html .= '<p class="description">' . $option['description'] . '</p>';
 			$html .= '</label> </div>';
 		}
 

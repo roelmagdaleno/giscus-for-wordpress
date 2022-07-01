@@ -2,6 +2,7 @@
 
 namespace Giscus;
 
+use Giscus\Components\Checkbox;
 use Giscus\Components\Radio;
 use Giscus\Components\Select;
 use Giscus\Components\Text;
@@ -90,6 +91,51 @@ class OptionsPage {
 						'label'       => 'Specific discussion number',
 						'description' => 'giscus will load a specific discussion by number. This option <strong>does not</strong> support automatic discussion creation.',
 					),
+				),
+			) ),
+			new Select( 'category', array(
+				'label'       => 'Discussion Category',
+				'description' => 'Populated after type the GitHub repository.',
+				'options'     => array(),
+			) ),
+			new Checkbox( 'useCategory', array(
+				'label'         => 'Only search for discussions in this category',
+				'default_value' => '1',
+				'description'   => 'When searching for a matching discussion, giscus will only search in the selected category.'
+			) ),
+			new Checkbox( 'reactionsEnabled', array(
+				'label'         => 'Enable reactions for the main post',
+				'default_value' => '1',
+				'description'   => 'The reactions for the discussion\'s main post will be shown before the comments.'
+			) ),
+			new Checkbox( 'emitMetadata', array(
+				'label'       => 'Emit discussion metadata',
+				'description' => 'Discussion metadata will be sent periodically to the parent window (the embedding page).'
+			) ),
+			new Checkbox( 'inputPosition', array(
+				'label'       => 'Place the comment box above the comments',
+				'description' => 'The comment input box will be placed above the comments, so that users can leave a comment without scrolling to the bottom of the discussion.'
+			) ),
+			new Checkbox( 'lazyLoad', array(
+				'label'         => 'Load the comments lazily',
+				'default_value' => '1',
+				'description'   => 'Loading of the comments will be deferred until the user scrolls near the comments container. This is done by adding <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#attr-loading" target="_blank" rel="noreferrer noopener nofollow"><code>loading="lazy"</code></a> to the <code>&lt;iframe&gt;</code> element.'
+			) ),
+			new Select( 'theme', array(
+				'label'         => 'Theme',
+				'default_value' => 'light',
+				'options'       => array(
+					'light'                  => 'GitHub Light',
+					'light_high_contrast'    => 'GitHub Light High Contrast',
+					'light_protanopia'       => 'GitHub Light Protanopia & Deuteranopia',
+					'light_tritanopia'       => 'GitHub Light Tritanopia',
+					'dark'                   => 'GitHub Dark',
+					'dark_high_contrast'     => 'GitHub Dark High Contrast',
+					'dark_protanopia'        => 'GitHub Dark Protanopia & Deuteranopia',
+					'dark_tritanopia'        => 'GitHub Dark Tritanopia',
+					'dark_dimmed'            => 'GitHub Dark Dimmed',
+					'transparent_dark'       => 'Transparent Dark',
+					'preferred_color_scheme' => 'Preferred color scheme',
 				),
 			) ),
 		);

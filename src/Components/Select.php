@@ -13,6 +13,8 @@ class Select extends Component {
 	 * @return string   The HTML component.
 	 */
 	public function render() : string {
+		$description = $this->settings['description'] ?? '';
+
 		$html  = '<select id="' . esc_attr( $this->id() ) . '" ';
 		$html .= 'name="' . esc_attr( $this->name() ) . '" ' . $this->attributes() . '>';
 
@@ -22,6 +24,7 @@ class Select extends Component {
 		}
 
 		$html .= '</select>';
+		$html .= '<p class="description">' . $description . '</p>';
 
 		return $html;
 	}
