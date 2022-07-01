@@ -61,20 +61,28 @@ class Script {
 			return $tag;
 		}
 
+		$settings = get_option( 'giscus_settings', array() );
+
+		if ( empty( $settings ) || ! isset( $settings['repository'], $settings['repositoryId'] ) ) {
+			return $tag;
+		}
+
 		$attributes = array(
-			'data-repo'              => 'roelmagdaleno/roelmagdaleno.com',
-			'data-repo-id'           => 'MDEwOlJlcG9zaXRvcnkyMjA1OTM3MzU=',
-			'data-category'          => 'Announcements',
-			'data-category-id'       => 'DIC_kwDODSX-R84CP3bK',
-			'data-mapping'           => 'pathname',
-			'data-reactions-enabled' => '1',
-			'data-emit-metadata'     => '0',
-			'data-input-position'    => 'bottom',
-			'data-theme'             => 'light',
-			'data-lang'              => 'es',
-			'data-loading'           => 'lazy',
-			'crossorigin'            => 'anonymous',
+			'data-repo'              => $settings['repository'],
+			'data-repo-id'           => $settings['repositoryId'],
+			'data-category'          => $settings['categoryName'] ?? '',
+			'data-category-id'       => $settings['categoryId'] ?? '',
+			'data-mapping'           => $settings['mapping'] ?? 'pathname',
+			'data-reactions-enabled' => $settings['reactionsEnabled'] ?? '0',
+			'data-emit-metadata'     => $settings['emitMetadata'] ?? '0',
+			'data-input-position'    => isset( $settings['inputPosition'] ) ? 'top' : 'bottom',
+			'data-theme'             => $settings['theme'] ?? 'light',
+			'data-lang'              => $settings['language'] ?? 'en',
 		);
+
+		if ( isset( $settings['lazyLoad'] ) ) {
+			$attributes['data-loading'] = 'lazy';
+		}
 
 		$tag = '<script src="' . esc_attr( $src ) . '" ';
 
@@ -82,7 +90,7 @@ class Script {
 			$tag .= esc_attr( $attribute ) . '=' . esc_attr( $value ) . ' ';
 		}
 
-		$tag .= 'async></script>';
+		$tag .= 'crossorigin="anonymous" async></script>';
 
 		return $tag;
 	}

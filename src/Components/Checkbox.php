@@ -17,7 +17,7 @@ class Checkbox extends Component {
 
 		$html  = '<label for="' . esc_attr( $this->id() ) . '">';
 		$html .= '<input type="checkbox" id="' . esc_attr( $this->id() ) . '" ';
-		$html .= 'name="' . esc_attr( $this->name() ) . '" value="' . esc_attr( $value ) . '" ';
+		$html .= 'name="' . esc_attr( $this->name() ) . '" value="1" ';
 		$html .= checked( '1', $value, false ) . ' />';
 		$html .= $this->settings['description'] ?? '';
 		$html .= '</label>';

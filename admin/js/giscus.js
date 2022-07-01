@@ -68,11 +68,11 @@ function fillCategories( data ) {
 	categoryEl.innerHTML = options.join( '' );
 
 	const categories   = document.querySelector( '#categories' );
-	const categoryId   = document.querySelector( '#categoryId' );
+	const categoryName = document.querySelector( '#categoryName' );
 	const repositoryId = document.querySelector( '#repositoryId' );
 
 	categories.value   = JSON.stringify( data.categories );
-	categoryId.value   = data.categories[0].id;
+	categoryName.value = data.categories[0].name;
 	repositoryId.value = data.repositoryId;
 }
 

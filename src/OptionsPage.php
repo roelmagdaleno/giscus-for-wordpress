@@ -39,7 +39,7 @@ class OptionsPage {
 
 		$settings = array(
 			new Hidden( 'repositoryId' ),
-			new Hidden( 'categoryId' ),
+			new Hidden( 'categoryName' ),
 			new Hidden( 'categories' ),
 			new Select( 'language', array(
 				'label'         => 'Language',
@@ -105,14 +105,12 @@ class OptionsPage {
 				'options'     => $this->categories(),
 			) ),
 			new Checkbox( 'useCategory', array(
-				'label'         => 'Only search for discussions in this category',
-				'default_value' => '1',
-				'description'   => 'When searching for a matching discussion, giscus will only search in the selected category.'
+				'label'       => 'Only search for discussions in this category',
+				'description' => 'When searching for a matching discussion, giscus will only search in the selected category.'
 			) ),
 			new Checkbox( 'reactionsEnabled', array(
-				'label'         => 'Enable reactions for the main post',
-				'default_value' => '1',
-				'description'   => 'The reactions for the discussion\'s main post will be shown before the comments.'
+				'label'       => 'Enable reactions for the main post',
+				'description' => 'The reactions for the discussion\'s main post will be shown before the comments.'
 			) ),
 			new Checkbox( 'emitMetadata', array(
 				'label'       => 'Emit discussion metadata',
@@ -123,9 +121,8 @@ class OptionsPage {
 				'description' => 'The comment input box will be placed above the comments, so that users can leave a comment without scrolling to the bottom of the discussion.'
 			) ),
 			new Checkbox( 'lazyLoad', array(
-				'label'         => 'Load the comments lazily',
-				'default_value' => '1',
-				'description'   => 'Loading of the comments will be deferred until the user scrolls near the comments container. This is done by adding <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#attr-loading" target="_blank" rel="noreferrer noopener nofollow"><code>loading="lazy"</code></a> to the <code>&lt;iframe&gt;</code> element.'
+				'label'       => 'Load the comments lazily',
+				'description' => 'Loading of the comments will be deferred until the user scrolls near the comments container. This is done by adding <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#attr-loading" target="_blank" rel="noreferrer noopener nofollow"><code>loading="lazy"</code></a> to the <code>&lt;iframe&gt;</code> element.'
 			) ),
 			new Select( 'theme', array(
 				'label'         => 'Theme',
