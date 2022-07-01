@@ -4,11 +4,22 @@ namespace Giscus;
 
 class Giscus {
 	/**
+	 * The plugin settings.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @var   array   $settings   The plugin settings.
+	 */
+	public array $settings;
+
+	/**
 	 * Initialize the hooks that will run the Giscus functionality.
 	 *
 	 * @since 0.1.0
 	 */
 	public function hooks() : void {
+		$this->settings = get_option( 'giscus_settings', array() );
+
 		if ( is_admin() ) {
 			$file = dirname( __DIR__ ) . '/giscus.php';
 
@@ -19,8 +30,26 @@ class Giscus {
 			return;
 		}
 
+		if ( ! $this->load_giscus() ) {
+			return;
+		}
+
 		( new Script() )->hooks();
 		( new Comments() )->hooks();
+	}
+
+	/**
+	 * Check if we should load Giscus in current post.
+	 * We decide that if repository, repository ID and category values exist.
+	 *
+	 * @since  0.1.0
+	 *
+	 * @return bool   Whether to load Giscus or not.
+	 */
+	public function load_giscus() : bool {
+		return ! empty( $this->settings['repository'] )
+		       && ! empty( $this->settings['repositoryId'] )
+		       && ! empty( $this->settings['category'] );
 	}
 
 	/**
@@ -30,9 +59,7 @@ class Giscus {
 	 * @since 0.1.0
 	 */
 	public function default_settings() : void {
-		$settings = get_option( 'giscus_settings', array() );
-
-		if ( ! empty( $settings ) ) {
+		if ( ! empty( $this->settings ) ) {
 			return;
 		}
 
