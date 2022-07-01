@@ -1,6 +1,6 @@
 {
     "name": "roelmagdaleno/giscus-for-wordpress",
-    "description": "A comments system powered by GitHub Discussions. Let visitors leave comments and reactions on your website via GitHub!",
+    "description": "Use Giscus in WordPress as a comments system powered by GitHub Discussions.",
     "version": "0.1.0",
     "license": "MIT",
     "require": {

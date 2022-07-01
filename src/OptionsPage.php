@@ -96,9 +96,8 @@ class OptionsPage {
 				'description' => 'A public GitHub repository. This repo is where the discussions will be linked to.',
 			) ),
 			new Radio( 'mapping', array(
-				'label'         => 'Page ↔️ Discussions Mapping',
-				'default_value' => 'url',
-				'options'       => array(
+				'label'   => 'Page ↔️ Discussions Mapping',
+				'options' => array(
 					'pathname' => array(
 						'label'       => 'Discussion title contains page <code>pathname</code>',
 						'description' => 'giscus will search for a discussion whose title contains the page\'s <code>pathname</code> URL component.',
