@@ -1,3 +1,9 @@
 .gs-input-hidden {
     display: none;
 }
+
+.spinner {
+    float: none;
+    margin: 5px 10px 0;
+    vertical-align: top;
+}

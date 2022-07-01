@@ -66,6 +66,7 @@ class OptionsPage {
 			new Text( 'repository', array(
 				'label'       => 'GitHub Repository',
 				'placeholder' => 'myusername/repo',
+				'use_spinner' => true,
 				'description' => 'A public GitHub repository. This repo is where the discussions will be linked to.',
 			) ),
 			new Radio( 'mapping', array(

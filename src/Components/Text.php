@@ -18,6 +18,11 @@ class Text extends Component {
 		$html  = '<input type="text" id="' . esc_attr( $this->id() ) . '" ';
 		$html .= 'name="' . esc_attr( $this->name() ) . '" value="' . esc_attr( $this->value() ) . '" ';
 		$html .= 'class="regular-text" ' . esc_attr( $this->placeholder() ) . '>';
+
+		if ( isset( $this->settings['use_spinner'] ) ) {
+			$html .= '<span class="spinner"></span>';
+		}
+
 		$html .= '<p class="description">' . $description . '</p>';
 
 		return $html;

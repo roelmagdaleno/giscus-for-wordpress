@@ -25,7 +25,8 @@ const debounce = (callback, wait) => {
 
 const searchCategories = debounce( async ( ev ) => {
 	const repository   = ev.target.value.trim();
-	const descriptionEl = ev.target.nextElementSibling;
+	const spinnerEl    = ev.target.nextElementSibling;
+	const descriptionEl = ev.target.nextElementSibling.nextElementSibling;
 
 	descriptionEl.removeAttribute( 'style' );
 	descriptionEl.innerHTML = responses.default.message;
@@ -34,12 +35,16 @@ const searchCategories = debounce( async ( ev ) => {
 		return;
 	}
 
+	spinnerEl.classList.add( 'is-active' );
+
 	const endpoint = `https://giscus.app/api/discussions/categories?repo=${ repository }`;
 	const response = await fetch( endpoint );
 	const type     = ! response.ok ? 'bad' : 'good';
 
 	descriptionEl.style.color = responses[ type ].color;
 	descriptionEl.innerHTML   = responses[ type ].message;
+
+	spinnerEl.classList.remove( 'is-active' );
 
 	if ( ! response.ok ) {
 		return;
