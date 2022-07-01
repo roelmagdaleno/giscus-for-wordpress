@@ -221,8 +221,7 @@ class OptionsPage {
 	 * @return array   The GitHub Discussions categories.
 	 */
 	public function categories() : array {
-		$settings = get_option( 'giscus_settings', array() );
-
+		$settings   = get_option( 'giscus_settings', array() );
 		$categories = array();
 
 		if ( empty( $settings ) || ! isset( $settings['categories'] ) ) {
@@ -230,6 +229,10 @@ class OptionsPage {
 		}
 
 		$stored_categories = json_decode( $settings['categories'], true );
+
+		if ( ! $stored_categories ) {
+			return $categories;
+		}
 
 		foreach ( $stored_categories as $category ) {
 			$categories[ $category['id'] ] = $category['name'];
