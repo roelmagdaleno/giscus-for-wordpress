@@ -6,6 +6,7 @@ use Giscus\Components\Checkbox;
 use Giscus\Components\Radio;
 use Giscus\Components\Select;
 use Giscus\Components\Text;
+use Giscus\Components\Hidden;
 
 class OptionsPage {
 	protected string $page = 'giscus';
@@ -37,6 +38,9 @@ class OptionsPage {
 		);
 
 		$settings = array(
+			new Hidden( 'repositoryId' ),
+			new Hidden( 'categoryId' ),
+			new Hidden( 'categories' ),
 			new Select( 'language', array(
 				'label'         => 'Language',
 				'default_value' => 'en',
@@ -62,6 +66,7 @@ class OptionsPage {
 			new Text( 'repository', array(
 				'label'       => 'GitHub Repository',
 				'placeholder' => 'myusername/repo',
+				'description' => 'A public GitHub repository. This repo is where the discussions will be linked to.',
 			) ),
 			new Radio( 'mapping', array(
 				'label'         => 'Page ↔️ Discussions Mapping',
@@ -96,7 +101,7 @@ class OptionsPage {
 			new Select( 'category', array(
 				'label'       => 'Discussion Category',
 				'description' => 'Choose the discussion category where new discussions will be created. It is recommended to use a category with the <strong>Announcements</strong> type so that new discussions can only be created by maintainers and giscus. <strong>Populated after type the GitHub repository</strong>.',
-				'options'     => array(),
+				'options'     => $this->categories(),
 			) ),
 			new Checkbox( 'useCategory', array(
 				'label'         => 'Only search for discussions in this category',
@@ -143,13 +148,18 @@ class OptionsPage {
 		foreach ( $settings as $setting ) {
 			$setting->section = 'giscus_settings';
 
+			$class = 'Giscus\Components\Hidden' === get_class( $setting ) ? 'gs-input-hidden' : '';
+
 			add_settings_field(
 				$setting->id(),
-				$setting->settings['label'],
+				$setting->settings['label'] ?? '',
 				array( $this, 'render_field' ),
 				$this->page,
 				$this->page,
-				array( 'instance' => $setting )
+				array(
+					'class'    => $class,
+					'instance' => $setting,
+				)
 			);
 		}
 	}
@@ -164,5 +174,23 @@ class OptionsPage {
 
 	public function render() : void {
 		include_once dirname( __DIR__ ) . '/admin/views/options-page.php';
+	}
+
+	public function categories() {
+		$settings = get_option( 'giscus_settings', array() );
+
+		$categories = array();
+
+		if ( empty( $settings ) || ! isset( $settings['categories'] ) ) {
+			return $categories;
+		}
+
+		$stored_categories = json_decode( $settings['categories'], true );
+
+		foreach ( $stored_categories as $category ) {
+			$categories[ $category['id'] ] = $category['name'];
+		}
+
+		return $categories;
 	}
 }

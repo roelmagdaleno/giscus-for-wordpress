@@ -3,7 +3,9 @@
     "description": "A comments system powered by GitHub Discussions. Let visitors leave comments and reactions on your website via GitHub!",
     "version": "0.1.0",
     "license": "MIT",
-    "require": {},
+    "require": {
+        "ext-json": "*"
+    },
     "autoload": {
         "psr-4": {
             "Giscus\\": "src"

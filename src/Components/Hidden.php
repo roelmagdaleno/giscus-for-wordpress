@@ -4,7 +4,7 @@ namespace Giscus\Components;
 
 use Giscus\Component;
 
-class Text extends Component {
+class Hidden extends Component {
 	/**
 	 * Render the HTML component.
 	 *
@@ -13,12 +13,8 @@ class Text extends Component {
 	 * @return string   The HTML component.
 	 */
 	public function render() : string {
-		$description = $this->settings['description'] ?? '';
-
-		$html  = '<input type="text" id="' . esc_attr( $this->id() ) . '" ';
-		$html .= 'name="' . esc_attr( $this->name() ) . '" value="' . esc_attr( $this->value() ) . '" ';
-		$html .= 'class="regular-text" ' . esc_attr( $this->placeholder() ) . '>';
-		$html .= '<p class="description">' . $description . '</p>';
+		$html  = '<input type="hidden" id="' . esc_attr( $this->id() ) . '" ';
+		$html .= 'name="' . esc_attr( $this->name() ) . '" value="' . esc_attr( $this->value() ) . '" />';
 
 		return $html;
 	}
